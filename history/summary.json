@@ -62,7 +62,7 @@
     "url": "https://search.open.canada.ca/grants",
     "icon": "https://icons.duckduckgo.com/ip3/search.open.canada.ca.ico",
     "slug": "search-v2",
-    "status": "up",
+    "status": "down",
     "uptime": "99.73%",
     "uptimeDay": "98.30%",
     "uptimeWeek": "99.60%",
