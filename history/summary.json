@@ -5,18 +5,17 @@
     "icon": "https://icons.duckduckgo.com/ip3/open.canada.ca.ico",
     "slug": "portal",
     "status": "up",
-    "uptime": "99.98%",
-    "uptimeDay": "99.39%",
-    "uptimeWeek": "99.91%",
-    "uptimeMonth": "99.98%",
-    "uptimeYear": "99.98%",
+    "uptime": "99.99%",
+    "uptimeDay": "100.00%",
+    "uptimeWeek": "100.00%",
+    "uptimeMonth": "100.00%",
+    "uptimeYear": "99.99%",
     "time": 334,
     "timeDay": 530,
     "timeWeek": 389,
     "timeMonth": 385,
     "timeYear": 334,
     "dailyMinutesDown": {
-      "2023-03-21": 9,
       "2022-12-28": 27
     }
   },
@@ -38,30 +37,6 @@
     "timeYear": 552,
     "dailyMinutesDown": {
       "2022-12-28": 27
-    }
-  },
-  {
-    "name": "Search v1",
-    "url": "https://search.open.canada.ca/en/od",
-    "icon": "https://icons.duckduckgo.com/ip3/search.open.canada.ca.ico",
-    "slug": "search-v1",
-    "status": "up",
-    "uptime": "99.53%",
-    "uptimeDay": "99.45%",
-    "uptimeWeek": "99.92%",
-    "uptimeMonth": "99.98%",
-    "uptimeYear": "99.53%",
-    "time": 926,
-    "timeDay": 1010,
-    "timeWeek": 795,
-    "timeMonth": 816,
-    "timeYear": 926,
-    "dailyMinutesDown": {
-      "2023-03-21": 8,
-      "2022-12-28": 27,
-      "2022-11-10": 25,
-      "2022-11-01": 798,
-      "2022-10-31": 187
     }
   },
   {
