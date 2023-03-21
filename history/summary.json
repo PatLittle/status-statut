@@ -4,10 +4,10 @@
     "url": "https://open.canada.ca",
     "icon": "https://icons.duckduckgo.com/ip3/open.canada.ca.ico",
     "slug": "portal",
-    "status": "up",
+    "status": "down",
     "uptime": "99.99%",
-    "uptimeDay": "100.00%",
-    "uptimeWeek": "100.00%",
+    "uptimeDay": "99.91%",
+    "uptimeWeek": "99.99%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "99.99%",
     "time": 333,
@@ -16,6 +16,7 @@
     "timeMonth": 380,
     "timeYear": 333,
     "dailyMinutesDown": {
+      "2023-03-21": 1,
       "2022-12-28": 27
     }
   },
@@ -44,9 +45,9 @@
     "url": "https://search.open.canada.ca/en/od",
     "icon": "https://icons.duckduckgo.com/ip3/search.open.canada.ca.ico",
     "slug": "search-v1",
-    "status": "up",
+    "status": "down",
     "uptime": "99.53%",
-    "uptimeDay": "100.00%",
+    "uptimeDay": "99.97%",
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "99.53%",
@@ -56,6 +57,7 @@
     "timeMonth": 811,
     "timeYear": 926,
     "dailyMinutesDown": {
+      "2023-03-21": 0,
       "2022-12-28": 27,
       "2022-11-10": 25,
       "2022-11-01": 798,
