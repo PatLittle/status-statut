@@ -4,10 +4,10 @@
     "url": "https://open.canada.ca",
     "icon": "https://icons.duckduckgo.com/ip3/open.canada.ca.ico",
     "slug": "portal",
-    "status": "up",
+    "status": "down",
     "uptime": "99.99%",
-    "uptimeDay": "100.00%",
-    "uptimeWeek": "100.00%",
+    "uptimeDay": "99.95%",
+    "uptimeWeek": "99.99%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "99.99%",
     "time": 335,
@@ -16,6 +16,7 @@
     "timeMonth": 457,
     "timeYear": 335,
     "dailyMinutesDown": {
+      "2023-10-14": 1,
       "2023-08-11": 35,
       "2022-12-28": 27
     }
@@ -25,9 +26,9 @@
     "url": "https://open.canada.ca/data/en/dataset/2916fad5-ebcc-4c86-b0f3-4f619b29f412",
     "icon": "https://icons.duckduckgo.com/ip3/open.canada.ca.ico",
     "slug": "ckan",
-    "status": "up",
+    "status": "down",
     "uptime": "99.98%",
-    "uptimeDay": "100.00%",
+    "uptimeDay": "99.97%",
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "99.98%",
@@ -37,6 +38,7 @@
     "timeMonth": 635,
     "timeYear": 553,
     "dailyMinutesDown": {
+      "2023-10-14": 0,
       "2023-06-15": 57,
       "2022-12-28": 27
     }
@@ -46,9 +48,9 @@
     "url": "https://search.open.canada.ca/grants",
     "icon": "https://icons.duckduckgo.com/ip3/search.open.canada.ca.ico",
     "slug": "search-v2",
-    "status": "up",
+    "status": "down",
     "uptime": "99.88%",
-    "uptimeDay": "100.00%",
+    "uptimeDay": "99.99%",
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "99.88%",
@@ -58,6 +60,7 @@
     "timeMonth": 2676,
     "timeYear": 1030,
     "dailyMinutesDown": {
+      "2023-10-14": 0,
       "2023-07-22": 16,
       "2023-06-07": 22,
       "2023-05-31": 15,
