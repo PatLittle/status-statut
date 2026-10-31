@@ -108,8 +108,24 @@
     attributeRecords.set(element, records);
   }
 
+  function ensureBrandFooter() {
+    // Older released Upptime templates do not render customFootHtml.
+    const root = document.querySelector('#sapper');
+    const template = document.querySelector('template[data-gcds-brand-footer]');
+    if (!root || !template) return;
+    const nativeFooter = root.querySelector('.gcds-brand-footer:not([data-gcds-footer-fallback])');
+    if (nativeFooter) {
+      root.querySelectorAll('[data-gcds-footer-fallback]').forEach(footer => footer.remove());
+    } else if (!root.querySelector('.gcds-brand-footer')) {
+      const content = template.content.cloneNode(true);
+      const footer = content.querySelector('.gcds-brand-footer');
+      if (footer) { footer.dataset.gcdsFooterFallback = ''; root.append(content); }
+    }
+  }
+
   function apply() {
     scheduled = false;
+    ensureBrandFooter();
     // The service-worker fallback can mount/recreate the layout after window.load.
     if (header && !header.isConnected) {
       const replacement = document.querySelector('[data-gcds-brand-header]');
