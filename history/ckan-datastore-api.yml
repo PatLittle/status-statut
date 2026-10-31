@@ -1,7 +1,7 @@
 url: https://open.canada.ca/data/en/api/3/action/datastore_search?resource_id=grants
 status: up
 code: 200
-responseTime: 699
-lastUpdated: 2026-10-31T17:23:22.483Z
+responseTime: 596
+lastUpdated: 2026-10-31T18:14:59.093Z
 startTime: 2026-10-31T02:47:09.079Z
 generator: Upptime <https://github.com/upptime/upptime>
