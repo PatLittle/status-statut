@@ -53,6 +53,13 @@
   function translateText(node) {
     const record = textRecords.get(node);
     const source = record && node.nodeValue === record.output ? record.source : node.nodeValue;
+    // Some Upptime builds emit the stock emoji in its own text node.
+    // The theme draws a font-independent decorative marker for this banner.
+    if (/^\s*✅\s*$/.test(source) && node.parentElement?.matches('main > article.up')) {
+      if (node.nodeValue !== '') node.nodeValue = '';
+      textRecords.set(node, { source, output: '' });
+      return;
+    }
     const found = match(source);
     if (!found) return;
     const output = (source.match(/^\s*/)?.[0] || '') + render(found) + (source.match(/\s*$/)?.[0] || '');
@@ -105,6 +112,7 @@
     // The service-worker fallback can mount/recreate the layout after window.load.
     if (header && !header.isConnected) document.querySelector('nav')?.before(header);
     document.documentElement.lang = language;
+    document.documentElement.dataset.gcdsLanguage = language;
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
       acceptNode: node => node.parentElement?.closest('script, style, noscript, code, pre, textarea, [data-gcds-ui], [translate="no"]')
         ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT

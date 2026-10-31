@@ -19,6 +19,7 @@ const screenshots = process.env.SCREENSHOT_DIR || 'screenshots';
   assert.equal(await page.locator('.gcds-language-link').count(), 1, 'A repeated script load creates one language control');
   await page.waitForFunction(() => document.querySelectorAll('.live-status article').length > 0);
   assert.equal(await page.locator('html').getAttribute('lang'), 'en');
+  if (await page.locator('main > article.up').count()) assert.ok(!(await page.locator('main > article.up').textContent()).includes('✅'), 'The theme replaces the stock emoji with its CSS marker');
   assert.equal(await page.locator('.gcds-language-link').textContent(), 'Français');
   assert.equal(await page.locator('h1').textContent().then(x => x.trim()), 'Open Government Portal');
   assert.equal(await page.locator('body').evaluate(el => getComputedStyle(el).fontFamily.includes('Noto Sans')), true);
