@@ -18,6 +18,8 @@ const screenshots = process.env.SCREENSHOT_DIR || 'screenshots';
   await page.addScriptTag({ url: new URL('gcds-i18n.js', base).href });
   assert.equal(await page.locator('.gcds-language-link').count(), 1, 'A repeated script load creates one language control');
   assert.equal(await page.locator('[data-gcds-brand-header]').count(), 1);
+  await page.locator('.gcds-brand-footer img').waitFor();
+  assert.equal(await page.locator('.gcds-brand-footer').count(), 1);
   await page.waitForFunction(() => [...document.querySelectorAll('.gcds-signature img, .gcds-brand-footer img')].every(img => img.complete && img.naturalWidth > 0));
   assert.equal(await page.locator('.gcds-signature img').getAttribute('alt'), 'Government of Canada');
   assert.equal(await page.locator('.gcds-history-back').count(), 0);
