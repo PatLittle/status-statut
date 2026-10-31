@@ -18,8 +18,24 @@ const screenshots = process.env.SCREENSHOT_DIR || 'screenshots';
   await page.addScriptTag({ url: new URL('gcds-i18n.js', base).href });
   assert.equal(await page.locator('.gcds-language-link').count(), 1, 'A repeated script load creates one language control');
   assert.equal(await page.locator('[data-gcds-brand-header]').count(), 1);
+  await page.locator('nav[data-gcds-breadcrumbs]').waitFor();
+  assert.equal(await page.locator('nav a').count(), 1);
+  assert.equal(await page.locator('nav').getAttribute('aria-label'), 'Breadcrumb');
+  const navigationPosition = await page.evaluate(() => ({
+    headerBottom: document.querySelector('[data-gcds-brand-header]').getBoundingClientRect().bottom,
+    breadcrumbTop: document.querySelector('nav[data-gcds-breadcrumbs]').getBoundingClientRect().top
+  }));
+  assert.ok(navigationPosition.breadcrumbTop >= navigationPosition.headerBottom);
+  await page.locator('.gcds-repository-link a').waitFor();
+  const repositoryUrl = await page.evaluate(async () => (await (await fetch(new URL('gcds-i18n.json', document.baseURI))).json()).repositoryUrl);
+  assert.equal(await page.locator('.gcds-repository-link a').getAttribute('href'), repositoryUrl);
+  assert.equal(await page.locator('nav a[href*="github.com"]').count(), 0);
+  assert.equal(await page.locator('link[rel="icon"]').count(), 1);
+  assert.equal(await page.locator('link[rel="icon"]').getAttribute('type'), 'image/x-icon');
+  assert.equal(await page.locator('link[rel="icon"]').getAttribute('href'), 'https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/assets/favicon.ico');
+  assert.ok(await page.locator('.gcds-repository-link').evaluate(el => el.getBoundingClientRect().top >= el.parentElement.querySelector('p').getBoundingClientRect().bottom));
   assert.equal(await page.locator('nav a').evaluateAll(links => links.filter(link => {
-    const url = new URL(link.href); return url.origin === location.origin && url.pathname.replace(/\/$/, '') === new URL(document.baseURI).pathname.replace(/\/$/, '');
+    const url = new URL(link.href); return (url.origin === location.origin || ['127.0.0.1', 'localhost'].includes(location.hostname)) && url.pathname.replace(/\/$/, '') === new URL(document.baseURI).pathname.replace(/\/$/, '');
   }).length), 1, 'The header has exactly one status-home link');
   await page.locator('.gcds-brand-footer img').waitFor();
   assert.equal(await page.locator('.gcds-brand-footer').count(), 1);
@@ -43,6 +59,7 @@ const screenshots = process.env.SCREENSHOT_DIR || 'screenshots';
   assert.equal(await page.locator('#data_month').isChecked(), true);
   assert.equal(new URL(page.url()).searchParams.get('test'), 'preserved');
   assert.equal(await page.locator('.gcds-language-link').getAttribute('lang'), 'en');
+  assert.equal(await page.locator('nav').getAttribute('aria-label'), 'Fil d’Ariane');
   assert.equal(await page.locator('.gcds-language-link').evaluate(el => el === document.activeElement), true);
   assert.ok((await page.locator('.live-status').textContent()).includes('Temps de réponse moyen'));
   assert.ok((await page.locator('.live-status .data').allTextContents()).some(x => /\d+\s*ms/.test(x)));
@@ -104,8 +121,7 @@ const screenshots = process.env.SCREENSHOT_DIR || 'screenshots';
   await page.goto(new URL('history/portal?lang=en', base).href, { waitUntil: 'networkidle' });
   await page.locator('.gcds-history-back a').waitFor();
   assert.equal(await page.locator('.gcds-history-back').count(), 1);
-  assert.equal(await page.locator('nav ul').evaluate(el => getComputedStyle(el).display), 'flex');
-  assert.equal(await page.locator('nav ul').evaluate(el => getComputedStyle(el).listStyleType), 'none');
+  assert.equal(await page.locator('nav ul a').count(), 0);
   assert.equal(await page.locator('.gcds-history-back a').textContent(), '← Back to all services');
   assert.equal(await page.locator('.gcds-history-back a').getAttribute('href'), new URL('?lang=en', base).href);
   await page.screenshot({ path: path.join(screenshots, 'history-desktop-en.png'), fullPage: true });
