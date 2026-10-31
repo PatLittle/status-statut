@@ -16,9 +16,11 @@ sites:
   - name: ATI Search
     url: https://open.canada.ca/en/search/ati
     type: globalping
+    location: Ottawa+Canada
   - name: ATI Search details
     url: https://open.canada.ca/en/search/ati/reference/0c9449bde99814b30ee8e467528b2fac
     type: globalping
+    location: Ottawa+Canada
   - name: Open Maps
     url: https://open.canada.ca/openmap/en.html#05586948-c5ac-4de9-b9ef-a31020b0dc43
   - name: CKAN Datastore API
