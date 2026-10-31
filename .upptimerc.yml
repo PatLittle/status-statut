@@ -1,5 +1,5 @@
 # Change these first
-owner: open-data
+owner: PatLittle
 repo: status-statut
 
 sites:
@@ -32,7 +32,7 @@ status-website:
   introMessage: This is a sample status page which uses **real-time** data.
   navbar:
     - title: Status
-      href: https://open-data.github.io/status-statut/
+      href: https://PatLittle.github.io/status-statut/
     - title: GitHub
       href: https://github.com/$OWNER/$REPO
   theme: dark
