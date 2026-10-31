@@ -19,6 +19,7 @@
   const attributeRecords = new WeakMap();
   let language, entries, header, toggle, announcement;
   let scheduled = false;
+  let historyBackLabels = { en: '← Back to all services', fr: '← Retour à tous les services' };
 
   function compile(message) {
     const tokens = [];
@@ -110,7 +111,28 @@
   function apply() {
     scheduled = false;
     // The service-worker fallback can mount/recreate the layout after window.load.
-    if (header && !header.isConnected) document.querySelector('nav')?.before(header);
+    if (header && !header.isConnected) {
+      const replacement = document.querySelector('[data-gcds-brand-header]');
+      if (replacement && replacement !== header) replacement.replaceWith(header);
+      else document.querySelector('nav')?.before(header);
+    }
+    const main = document.querySelector('main');
+    const isHistory = location.pathname.startsWith(`${basePath}history/`);
+    let back = main?.querySelector('.gcds-history-back');
+    if (main && isHistory) {
+      if (!back) {
+        back = document.createElement('footer');
+        back.className = 'gcds-history-back';
+        back.dataset.gcdsUi = '';
+        back.append(document.createElement('a'));
+        main.append(back);
+      }
+      const link = back.querySelector('a');
+      const home = new URL(basePath, location.origin);
+      home.searchParams.set('lang', language);
+      if (link.href !== home.href) link.href = home.href;
+      if (link.textContent !== historyBackLabels[language]) link.textContent = historyBackLabels[language];
+    } else if (back) back.remove();
     document.documentElement.lang = language;
     document.documentElement.dataset.gcdsLanguage = language;
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
@@ -162,6 +184,7 @@
       if (!response.ok) throw new Error(`Dictionary HTTP ${response.status}`);
       const dictionary = await response.json();
       entries = dictionary.messages.map(compile);
+      if (dictionary.historyBack?.en && dictionary.historyBack?.fr) historyBackLabels = dictionary.historyBack;
       const requested = new URL(location.href).searchParams.get('lang');
       let saved;
       try { saved = localStorage.getItem(storageKey); } catch (_) { /* Private storage may be unavailable. */ }
@@ -177,11 +200,15 @@
         const timeout = setTimeout(() => { observer.disconnect(); resolve(null); }, 15000);
       });
       if (!nav) return;
-      header = document.createElement('header');
-      header.className = 'gcds-language-header';
+      const brandedHeader = document.querySelector('[data-gcds-brand-header]');
+      header = brandedHeader || document.createElement('header');
+      header.classList.add('gcds-language-header');
       header.dataset.gcdsUi = '';
-      header.innerHTML = '<div class="container"><a class="gcds-skip-link" href="#gcds-main"></a><a class="gcds-language-link" rel="alternate"></a></div><span class="gcds-language-announcement" role="status" aria-live="polite"></span>';
-      nav.before(header);
+      const languageLinks = '<a class="gcds-skip-link" href="#gcds-main"></a><a class="gcds-language-link" rel="alternate"></a><span class="gcds-language-announcement" role="status" aria-live="polite"></span>';
+      const slot = header.querySelector('[data-gcds-language-slot]');
+      if (slot) slot.innerHTML = languageLinks;
+      else header.innerHTML = `<div class="container">${languageLinks}</div>`;
+      if (!brandedHeader) nav.before(header);
       const main = document.querySelector('main');
       if (main) {
         if (!main.id) main.id = 'gcds-main';

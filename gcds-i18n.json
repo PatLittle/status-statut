@@ -72,6 +72,11 @@
       "fr": "Tous les systèmes sont opérationnels"
     },
     {
+      "source": "Open.Canada.ca System Status / État des systèmes d’Open.Canada.ca",
+      "en": "Open.Canada.ca System Status",
+      "fr": "État des systèmes d’Open.Canada.ca"
+    },
+    {
       "source": "GitHub Personal Access Token / Jeton d’accès personnel GitHub",
       "en": "GitHub Personal Access Token",
       "fr": "Jeton d’accès personnel GitHub"
@@ -112,11 +117,6 @@
       "fr": "Que signifie cette erreur?"
     },
     {
-      "source": "Open Government Portal / Portail du gouvernement ouvert",
-      "en": "Open Government Portal",
-      "fr": "Portail du gouvernement ouvert"
-    },
-    {
       "source": "Posted at $DATE by $AUTHOR / Posté à $DATE par $AUTHOR",
       "en": "Posted at $DATE by $AUTHOR",
       "fr": "Posté à $DATE par $AUTHOR"
@@ -125,6 +125,11 @@
       "source": "← Back to all incidents / Retour à tous les incidents",
       "en": "← Back to all incidents",
       "fr": "Retour à tous les incidents"
+    },
+    {
+      "source": "← Back to all services / ← Retour à tous les services",
+      "en": "← Back to all services",
+      "fr": "← Retour à tous les services"
     },
     {
       "source": "Average response time: / Temps de réponse moyen : ",
@@ -165,6 +170,11 @@
       "source": "Go to the homepage / Aller à la page d’accueil",
       "en": "Go to the homepage",
       "fr": "Aller à la page d’accueil"
+    },
+    {
+      "source": "Government of Canada / Gouvernement du Canada",
+      "en": "Government of Canada",
+      "fr": "Gouvernement du Canada"
     },
     {
       "source": "An error occurred / Une erreur est survenue",
@@ -366,5 +376,9 @@
       "en": "ms",
       "fr": "ms"
     }
-  ]
+  ],
+  "historyBack": {
+    "en": "← Back to all services",
+    "fr": "← Retour à tous les services"
+  }
 }

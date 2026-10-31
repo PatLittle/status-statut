@@ -43,5 +43,10 @@
     "source": "NGINX Static Files",
     "en": "NGINX Static Files",
     "fr": "Fichiers statiques NGINX"
+  },
+  {
+    "source": "Government of Canada / Gouvernement du Canada",
+    "en": "Government of Canada",
+    "fr": "Gouvernement du Canada"
   }
 ]
