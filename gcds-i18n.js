@@ -34,7 +34,7 @@
     const plain = normalize(value);
     // Upptime's all-operational message has an emoji outside the i18n value.
     const originalDecoration = plain.match(/^(✅|⚠️|🛑)\s*/)?.[0] || '';
-    const decoration = originalDecoration.startsWith('✅') ? '✓ ' : originalDecoration;
+    const decoration = originalDecoration.startsWith('✅') ? '' : originalDecoration;
     const content = originalDecoration ? plain.slice(originalDecoration.length) : plain;
     for (const entry of entries) {
       const result = entry.pattern.exec(content);
