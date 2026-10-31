@@ -35,7 +35,22 @@ status-website:
   logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
   name: Service status / État des services
   hideNavLogo: true
-  introTitle: "Open Government Portal / Portail du gouvernement ouvert"
+  customBodyHtml: |
+    <header class="gcds-brand-header" data-gcds-brand-header>
+      <div class="container">
+        <a class="gcds-signature" href="https://www.canada.ca/">
+          <img src="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/assets/sig-blk-en.svg" alt="Government of Canada / Gouvernement du Canada" width="819" height="76">
+        </a>
+        <div data-gcds-language-slot></div>
+      </div>
+    </header>
+  customFootHtml: |
+    <div class="gcds-brand-footer">
+      <div class="container">
+        <img src="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/assets/wmms-blk.svg" alt="Canada" width="143" height="34">
+      </div>
+    </div>
+  introTitle: "Open.Canada.ca System Status / État des systèmes d’Open.Canada.ca"
   introMessage: Availability and response times for Open Government services. / Disponibilité et temps de réponse des services du gouvernement ouvert.
   navbar:
     - title: Status / État des services
@@ -69,6 +84,7 @@ i18n:
   incidentViewOnGitHub: View and Subscribe on GitHub / Voir et s'abonner sur GitHub
   incidentCommentSummary: Posted at $DATE by $AUTHOR / Posté à $DATE par $AUTHOR
   incidentBack: ← Back to all incidents / Retour à tous les incidents
+  historyBack: ← Back to all services / ← Retour à tous les services
   pastIncidents: Past Incidents / Incidents passés
   pastIncidentsResolved: Resolved in $MINUTES minutes with $POSTS posts / Résolu en $MINUTES minutes avec $POSTS messages
   liveStatus: Live Status / Statut en direct

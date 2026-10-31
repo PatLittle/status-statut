@@ -44,5 +44,9 @@ if extra.exists():
 # Longest first avoids a short label matching a larger dynamic template first.
 messages.sort(key=lambda m: len(m['source']), reverse=True)
 output = {'defaultLanguage': 'en', 'messages': messages}
+history_back = config.get('i18n', {}).get('historyBack', '')
+if ' / ' in history_back:
+    en, fr = history_back.split(' / ', 1)
+    output['historyBack'] = {'en': en, 'fr': fr}
 (root / 'assets/gcds-i18n.json').write_text(json.dumps(output, ensure_ascii=False, indent=2) + '\n')
 print(f'Generated {len(messages)} interface messages.')

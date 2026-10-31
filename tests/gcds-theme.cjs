@@ -17,11 +17,15 @@ const screenshots = process.env.SCREENSHOT_DIR || 'screenshots';
   await page.locator('.gcds-language-link').waitFor();
   await page.addScriptTag({ url: new URL('gcds-i18n.js', base).href });
   assert.equal(await page.locator('.gcds-language-link').count(), 1, 'A repeated script load creates one language control');
+  assert.equal(await page.locator('[data-gcds-brand-header]').count(), 1);
+  await page.waitForFunction(() => [...document.querySelectorAll('.gcds-signature img, .gcds-brand-footer img')].every(img => img.complete && img.naturalWidth > 0));
+  assert.equal(await page.locator('.gcds-signature img').getAttribute('alt'), 'Government of Canada');
+  assert.equal(await page.locator('.gcds-history-back').count(), 0);
   await page.waitForFunction(() => document.querySelectorAll('.live-status article').length > 0);
   assert.equal(await page.locator('html').getAttribute('lang'), 'en');
   if (await page.locator('main > article.up').count()) assert.ok(!(await page.locator('main > article.up').textContent()).includes('✅'), 'The theme replaces the stock emoji with its CSS marker');
   assert.equal(await page.locator('.gcds-language-link').textContent(), 'Français');
-  assert.equal(await page.locator('h1').textContent().then(x => x.trim()), 'Open Government Portal');
+  assert.equal(await page.locator('h1').textContent().then(x => x.trim()), 'Open.Canada.ca System Status');
   assert.equal(await page.locator('body').evaluate(el => getComputedStyle(el).fontFamily.includes('Noto Sans')), true);
   assert.equal(await page.locator('input[type=radio]').first().isVisible(), true);
   // A language change must preserve the chosen measurement interval and URL state.
@@ -30,7 +34,7 @@ const screenshots = process.env.SCREENSHOT_DIR || 'screenshots';
   await page.locator('.gcds-language-link').focus();
   await page.keyboard.press('Enter');
   await page.waitForFunction(() => document.documentElement.lang === 'fr');
-  assert.equal(await page.locator('h1').textContent().then(x => x.trim()), 'Portail du gouvernement ouvert');
+  assert.equal(await page.locator('h1').textContent().then(x => x.trim()), 'État des systèmes d’Open.Canada.ca');
   assert.equal(await page.locator('#data_month').isChecked(), true);
   assert.equal(new URL(page.url()).searchParams.get('test'), 'preserved');
   assert.equal(await page.locator('.gcds-language-link').getAttribute('lang'), 'en');
@@ -76,20 +80,64 @@ const screenshots = process.env.SCREENSHOT_DIR || 'screenshots';
   const delayedURL = new URL('gcds-delayed-test?lang=fr', base).href;
   const scriptURL = new URL('gcds-i18n.js', base).href;
   await delayed.route(delayedURL, route => route.fulfill({ contentType: 'text/html', body:
-    `<!doctype html><html><head><script async src="${scriptURL}"></script></head><body><div id="sapper"></div><script>
-    setTimeout(() => { document.querySelector('#sapper').innerHTML = '<nav></nav><main><h1>Open Government Portal / Portail du gouvernement ouvert</h1></main>'; }, 1200);
+    `<!doctype html><html><head><meta charset="utf-8"><script async src="${scriptURL}"></script></head><body><div id="sapper"></div><script>
+    setTimeout(() => { document.querySelector('#sapper').innerHTML = '<nav></nav><main><h1>Open.Canada.ca System Status / État des systèmes d’Open.Canada.ca</h1></main>'; }, 1200);
     </script></body></html>` }));
   await delayed.goto(delayedURL);
   await delayed.locator('.gcds-language-link').waitFor();
   assert.equal(await delayed.locator('.gcds-language-link').count(), 1);
-  assert.equal(await delayed.locator('h1').textContent(), 'Portail du gouvernement ouvert');
+  assert.equal(await delayed.locator('h1').textContent(), 'État des systèmes d’Open.Canada.ca');
   // Replacing a fallback layout must preserve the existing control and skip target.
-  await delayed.evaluate(() => { document.querySelector('#sapper').innerHTML = '<nav></nav><main><h1>Open Government Portal / Portail du gouvernement ouvert</h1></main>'; });
+  await delayed.evaluate(() => { document.querySelector('#sapper').innerHTML = '<nav></nav><main><h1>Open.Canada.ca System Status / État des systèmes d’Open.Canada.ca</h1></main>'; });
   await delayed.waitForFunction(() => document.querySelector('main')?.id === 'gcds-main');
   assert.equal(await delayed.locator('.gcds-language-link').count(), 1);
   await delayed.locator('.gcds-language-link').click();
   assert.equal(await delayed.locator('html').getAttribute('lang'), 'en');
   await delayed.close();
+  // History navigation works on direct URLs and Sapper client navigation.
+  await page.setViewportSize({ width: 1440, height: 1100 });
+  await page.goto(new URL('history/portal?lang=en', base).href, { waitUntil: 'networkidle' });
+  await page.locator('.gcds-history-back a').waitFor();
+  assert.equal(await page.locator('.gcds-history-back').count(), 1);
+  assert.equal(await page.locator('.gcds-history-back a').textContent(), '← Back to all services');
+  assert.equal(await page.locator('.gcds-history-back a').getAttribute('href'), new URL('?lang=en', base).href);
+  await page.screenshot({ path: path.join(screenshots, 'history-desktop-en.png'), fullPage: true });
+  await page.locator('.gcds-language-link').click();
+  assert.equal(await page.locator('.gcds-history-back a').textContent(), '← Retour à tous les services');
+  assert.equal(await page.locator('.gcds-history-back').count(), 1);
+  await page.screenshot({ path: path.join(screenshots, 'history-desktop-fr.png'), fullPage: true });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.screenshot({ path: path.join(screenshots, 'history-mobile-fr.png'), fullPage: true });
+  await page.locator('.gcds-language-link').click();
+  await page.screenshot({ path: path.join(screenshots, 'history-mobile-en.png'), fullPage: true });
+  assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
+  const brandRects = await page.evaluate(() => {
+    const signature = document.querySelector('.gcds-signature').getBoundingClientRect();
+    const toggle = document.querySelector('.gcds-language-link').getBoundingClientRect();
+    const wordmark = document.querySelector('.gcds-brand-footer img').getBoundingClientRect();
+    return { signatureRight: signature.right, toggleLeft: toggle.left, wordmarkRight: wordmark.right, width: innerWidth };
+  });
+  assert.ok(brandRects.signatureRight <= brandRects.toggleLeft, 'Signature and language link must not overlap');
+  assert.ok(Math.abs(brandRects.wordmarkRight - (brandRects.width - 16)) < 2, 'Mobile wordmark sits at the right gutter');
+  await page.locator('.gcds-history-back a').click();
+  await page.waitForFunction(() => !location.pathname.includes('/history/'));
+  await page.waitForFunction(() => !document.querySelector('.gcds-history-back'));
+  const firstService = page.locator('.live-status h4 a').first();
+  // A stock local export still generates service URLs for the public deployment.
+  if (new URL(base).hostname === '127.0.0.1') await firstService.evaluate(link => {
+    const url = new URL(link.href); link.href = location.origin + url.pathname + url.search;
+  });
+  await firstService.click();
+  await page.waitForFunction(() => location.pathname.includes('/history/'));
+  await page.locator('.gcds-history-back a').waitFor();
+  assert.equal(await page.locator('.gcds-history-back').count(), 1);
+  await page.goBack();
+  await page.waitForFunction(() => !location.pathname.includes('/history/'));
+  await page.waitForFunction(() => !document.querySelector('.gcds-history-back'));
+  await page.goto(new URL('incident/1?lang=fr', base).href, { waitUntil: 'networkidle' });
+  assert.equal(await page.locator('.gcds-history-back').count(), 0);
+  await page.locator('main > footer a').waitFor();
+  assert.ok((await page.locator('main > footer a').textContent()).includes('Retour à tous les incidents'));
   // No JavaScript: source bilingual copy remains visible.
   const noJS = await browser.newContext({ javaScriptEnabled: false });
   const fallback = await noJS.newPage();

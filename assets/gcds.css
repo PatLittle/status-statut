@@ -74,7 +74,7 @@ body #sapper a:focus-visible, body #sapper button:focus-visible, body #sapper in
 body #sapper select:focus-visible, body #sapper textarea:focus-visible {
   outline: 3px solid var(--gcds-focus-border); outline-offset: 3px; border-radius: 2px;
 }
-body #sapper > #sapper > nav, body #sapper nav { padding: 0; margin-bottom: 0; border-bottom: .25rem solid var(--gcds-bg-primary); overflow: visible; white-space: normal; font-weight: 400; }
+body #sapper nav { padding: 0; margin-bottom: 0; border-bottom: .25rem solid var(--gcds-bg-primary); overflow: visible; white-space: normal; font-weight: 400; }
 body #sapper nav .container { min-height: 5rem; gap: 1.5rem; flex-wrap: wrap; }
 body #sapper nav .logo { float: none; padding-block: 1.25rem; margin-right: 0; font-size: 1.25rem; }
 body #sapper nav .logo img { height: 2.5rem; border-radius: 0; }
@@ -133,3 +133,18 @@ body #sapper .gcds-language-announcement { position: absolute; width: 1px; heigh
 }
 @media (prefers-reduced-motion: reduce) { body #sapper *, body #sapper *::before, body #sapper *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
 @media print { body #sapper .gcds-language-header, body #sapper nav, body #sapper .gcds-skip-link, body #sapper form.r { display: none; } body #sapper main.container { max-width: none; padding: 0; } body #sapper article { break-inside: avoid; } }
+
+/* Optional branding comes from customBodyHtml/customFootHtml, never site URLs here. */
+body #sapper .gcds-brand-header .container { min-height: 6rem; padding-block: 1.25rem; }
+body #sapper .gcds-signature { display: block; line-height: 0; flex: 0 1 20rem; min-width: 0; }
+body #sapper .gcds-signature img { display: block; width: 100%; height: auto; }
+body #sapper [data-gcds-language-slot] { flex: 0 0 auto; }
+body #sapper .gcds-brand-footer { background: var(--gcds-bg-light); padding-bottom: 2rem; }
+body #sapper .gcds-brand-footer .container { display: flex; justify-content: flex-end; }
+body #sapper .gcds-brand-footer img { display: block; width: 8.9375rem; height: auto; }
+body #sapper .gcds-history-back { margin-top: 2rem; text-align: left; }
+@media (max-width: 47.99rem) {
+  body #sapper .gcds-brand-header .container { min-height: 5rem; gap: 1rem; }
+  body #sapper .gcds-signature { flex-basis: 20rem; }
+  body #sapper .gcds-brand-footer { padding-bottom: 1.5rem; }
+}

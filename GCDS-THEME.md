@@ -58,3 +58,9 @@ When changing the Upptime template version, recheck the home, history, incident 
 - [Upptime configuration and custom themes](https://upptime.js.org/docs/configuration)
 
 Theme CSS, browser script and generator are distributed under the repository's MIT license. Font licenses remain with their respective publishers.
+
+## Optional branding and history navigation
+
+This site's `.upptimerc.yml` uses the native `customBodyHtml` and `customFootHtml` hooks for the supplied GC signature and Canada wordmark. Copy or replace those HTML blocks to opt in to your own branding; removing them restores the generic header. The CSS and script contain no branding URLs. A header with `data-gcds-brand-header` and a child `data-gcds-language-slot` shares its top row with the language link. Images retain their aspect ratio on mobile. Keep useful image `alt` text, adding its translations to `assets/gcds-messages.json` if needed.
+
+History pages receive a footer link to the status home page, retaining the chosen language. Customize `i18n.historyBack` using the same `English / Français` convention and regenerate the dictionary. The link is removed when navigating to another type of page; stock incident-page links stay intact.
