@@ -70,6 +70,25 @@ const screenshots = process.env.SCREENSHOT_DIR || 'screenshots';
   await page.locator('.gcds-language-link').click();
   await page.goBack();
   await page.waitForFunction(() => document.documentElement.lang === 'en');
+  // A fallback page may mount its layout after window.load.
+  const delayed = await context.newPage();
+  const delayedURL = new URL('gcds-delayed-test?lang=fr', base).href;
+  const scriptURL = new URL('gcds-i18n.js', base).href;
+  await delayed.route(delayedURL, route => route.fulfill({ contentType: 'text/html', body:
+    `<!doctype html><html><head><script async src="${scriptURL}"></script></head><body><div id="sapper"></div><script>
+    setTimeout(() => { document.querySelector('#sapper').innerHTML = '<nav></nav><main><h1>Open Government Portal / Portail du gouvernement ouvert</h1></main>'; }, 1200);
+    </script></body></html>` }));
+  await delayed.goto(delayedURL);
+  await delayed.locator('.gcds-language-link').waitFor();
+  assert.equal(await delayed.locator('.gcds-language-link').count(), 1);
+  assert.equal(await delayed.locator('h1').textContent(), 'Portail du gouvernement ouvert');
+  // Replacing a fallback layout must preserve the existing control and skip target.
+  await delayed.evaluate(() => { document.querySelector('#sapper').innerHTML = '<nav></nav><main><h1>Open Government Portal / Portail du gouvernement ouvert</h1></main>'; });
+  await delayed.waitForFunction(() => document.querySelector('main')?.id === 'gcds-main');
+  assert.equal(await delayed.locator('.gcds-language-link').count(), 1);
+  await delayed.locator('.gcds-language-link').click();
+  assert.equal(await delayed.locator('html').getAttribute('lang'), 'en');
+  await delayed.close();
   // No JavaScript: source bilingual copy remains visible.
   const noJS = await browser.newContext({ javaScriptEnabled: false });
   const fallback = await noJS.newPage();
