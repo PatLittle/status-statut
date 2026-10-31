@@ -43,7 +43,7 @@ status-website:
     - title: GitHub
       href: https://github.com/$OWNER/$REPO
   theme: light
-  themeUrl: /status-statut/gcds.css
+  themeUrl: https://patlittle.github.io/status-statut/gcds.css
   scripts:
     - src: /status-statut/gcds-i18n.js
       async: true

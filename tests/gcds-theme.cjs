@@ -3,7 +3,7 @@ const { chromium } = require('playwright');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const base = process.env.STATUS_URL || 'http://127.0.0.1:3000/';
+const base = process.env.STATUS_URL || 'http://127.0.0.1:3000/status-statut/';
 const screenshots = process.env.SCREENSHOT_DIR || 'screenshots';
 (async () => {
   fs.mkdirSync(screenshots, { recursive: true });

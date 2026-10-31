@@ -6,18 +6,20 @@ This approximates GCDS visual styling; it is not the GCDS web-component library 
 
 ## Install the CSS
 
-Copy `assets/gcds.css` into your Upptime repository. Set your actual deployment base path (use `/gcds.css` for a site at the domain root):
+Copy `assets/gcds.css` into your Upptime repository. Set the full public URL of the theme on your deployment (use `https://YOUR-DOMAIN/gcds.css` for a site at the domain root):
 
 ```yaml
 status-website:
   theme: light
-  themeUrl: /YOUR-REPOSITORY/gcds.css
+  themeUrl: https://YOUR-USER.github.io/YOUR-REPOSITORY/gcds.css
   links:
     - rel: stylesheet
       href: https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Noto+Sans:wght@400;700&display=swap
 ```
 
-Upptime publishes the contents of `assets/` at the website root, so the URL does **not** include `/assets/`. Fonts can instead be self-hosted under your organization's font policy; the CSS also includes Arial and system sans-serif fallbacks. There are no external CSS imports. The theme works without the JavaScript add-on.
+Upptime publishes the contents of `assets/` at the website root, so the URL does **not** include `/assets/`. Use an absolute hosted `themeUrl`: Upptime’s exporter may crawl a relative/local stylesheet URL as a page before copying assets, producing a directory/file collision. The full URL avoids this export problem.
+
+Fonts can instead be self-hosted under your organization's font policy; the CSS also includes Arial and system sans-serif fallbacks. There are no external CSS imports. The theme works without the JavaScript add-on.
 
 The palette maps all stock Upptime theme variables, including status borders, tags, code, buttons and graphs. Additional rules cover type sizes, the heading underline, layout, mobile navigation, cards, footer, visible focus, time-range radio controls, reduced motion and print. It uses stable element/class selectors rather than generated Svelte class names. Override `--gcds-theme-width`, `--gcds-theme-accent`, the `--gcds-*` colour variables, or font variables in your own stylesheet. No official signatures or wordmarks are added automatically; configure authorized branding through Upptime's `logoUrl` and `name`.
 
