@@ -101,6 +101,11 @@ body #sapper .data { font-variant-numeric: tabular-nums; }
 body #sapper main ~ footer { background: var(--gcds-bg-light); border-top: 1px solid #d9d9d9; padding: 2rem; margin-top: 0; text-align: left; opacity: 1; font-size: 1.125rem; }
 body #sapper main ~ footer p { max-width: var(--gcds-theme-width); margin: 0 auto; }
 body #sapper .error-button, body #sapper .submit-button { display: inline-block; border-radius: .25rem; padding: .65rem 1.25rem; font: inherit; font-weight: 700; }
+/* Keep button text readable in every link state, including visited links. */
+body #sapper a.error-button, body #sapper a.error-button:visited, body #sapper a.error-button:hover,
+body #sapper a.submit-button, body #sapper a.submit-button:visited, body #sapper a.submit-button:hover {
+  color: #fff; background: var(--gcds-bg-primary);
+}
 body #sapper .gcds-language-header { background: #fff; }
 body #sapper .gcds-language-header .container { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3.5rem; }
 body #sapper .gcds-language-link { margin-left: auto; font-size: 1.125rem; padding-block: .5rem; }
