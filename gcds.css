@@ -148,3 +148,12 @@ body #sapper .gcds-history-back { margin-top: 2rem; text-align: left; }
   body #sapper .gcds-signature { flex-basis: 20rem; }
   body #sapper .gcds-brand-footer { padding-bottom: 1.5rem; }
 }
+
+/* Optional breadcrumb/footer layout selected by the configured brand header. */
+body #sapper [data-gcds-breadcrumb-header] { border-bottom: .25rem solid var(--gcds-bg-primary); }
+body #sapper nav[data-gcds-breadcrumbs] { border: 0; padding-block: 1.25rem 0; }
+body #sapper nav[data-gcds-breadcrumbs] .container { min-height: 0; padding-bottom: 0; }
+body #sapper nav[data-gcds-breadcrumbs] .logo { padding: 0; font-size: 1.125rem; font-weight: 400; }
+body #sapper nav[data-gcds-breadcrumbs] ul:empty { display: none; }
+body #sapper nav[data-gcds-breadcrumbs] + main { padding-top: 1.5rem; }
+body #sapper main ~ footer .gcds-repository-link { margin-top: .75rem; }

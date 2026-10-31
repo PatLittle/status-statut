@@ -19,6 +19,7 @@
   const attributeRecords = new WeakMap();
   let language, entries, header, toggle, announcement;
   let scheduled = false;
+  let repositoryUrl;
   let historyBackLabels = { en: '← Back to all services', fr: '← Retour à tous les services' };
 
   function compile(message) {
@@ -123,9 +124,39 @@
     }
   }
 
+  function applyLayoutOptions() {
+    if (header?.hasAttribute('data-gcds-breadcrumb-header')) {
+      const nav = document.querySelector('#sapper > nav');
+      if (nav) {
+        nav.dataset.gcdsBreadcrumbs = '';
+        nav.setAttribute('aria-label', language === 'fr' ? 'Fil d’Ariane' : 'Breadcrumb');
+      }
+    }
+    if (header?.hasAttribute('data-gcds-repository-footer') && repositoryUrl) {
+      const footer = document.querySelector('#sapper > main ~ footer');
+      if (footer) {
+        let repository = footer.querySelector('.gcds-repository-link');
+        if (!repository) {
+          repository = document.createElement('p');
+          repository.className = 'gcds-repository-link';
+          const link = document.createElement('a');
+          link.textContent = 'GitHub';
+          link.href = repositoryUrl;
+          repository.append(link);
+          footer.append(repository);
+        }
+      }
+    }
+    const favicon = document.querySelector('link[data-gcds-favicon]');
+    if (favicon) document.querySelectorAll('link[rel="icon"]').forEach(link => {
+      if (link !== favicon) link.remove();
+    });
+  }
+
   function apply() {
     scheduled = false;
     ensureBrandFooter();
+    applyLayoutOptions();
     // The service-worker fallback can mount/recreate the layout after window.load.
     if (header && !header.isConnected) {
       const replacement = document.querySelector('[data-gcds-brand-header]');
@@ -200,6 +231,7 @@
       if (!response.ok) throw new Error(`Dictionary HTTP ${response.status}`);
       const dictionary = await response.json();
       entries = dictionary.messages.map(compile);
+      repositoryUrl = dictionary.repositoryUrl;
       if (dictionary.historyBack?.en && dictionary.historyBack?.fr) historyBackLabels = dictionary.historyBack;
       const requested = new URL(location.href).searchParams.get('lang');
       let saved;
