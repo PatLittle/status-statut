@@ -54,8 +54,6 @@ status-website:
   introTitle: "Open.Canada.ca System Status / État des systèmes d’Open.Canada.ca"
   introMessage: Availability and response times for Open Government services. / Disponibilité et temps de réponse des services du gouvernement ouvert.
   navbar:
-    - title: Status / État des services
-      href: https://PatLittle.github.io/status-statut/
     - title: GitHub
       href: https://github.com/$OWNER/$REPO
   theme: light

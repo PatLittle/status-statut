@@ -18,6 +18,9 @@ const screenshots = process.env.SCREENSHOT_DIR || 'screenshots';
   await page.addScriptTag({ url: new URL('gcds-i18n.js', base).href });
   assert.equal(await page.locator('.gcds-language-link').count(), 1, 'A repeated script load creates one language control');
   assert.equal(await page.locator('[data-gcds-brand-header]').count(), 1);
+  assert.equal(await page.locator('nav a').evaluateAll(links => links.filter(link => {
+    const url = new URL(link.href); return url.origin === location.origin && url.pathname.replace(/\/$/, '') === new URL(document.baseURI).pathname.replace(/\/$/, '');
+  }).length), 1, 'The header has exactly one status-home link');
   await page.locator('.gcds-brand-footer img').waitFor();
   assert.equal(await page.locator('.gcds-brand-footer').count(), 1);
   await page.waitForFunction(() => [...document.querySelectorAll('.gcds-signature img, .gcds-brand-footer img')].every(img => img.complete && img.naturalWidth > 0));
