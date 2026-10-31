@@ -101,6 +101,8 @@ const screenshots = process.env.SCREENSHOT_DIR || 'screenshots';
   await page.goto(new URL('history/portal?lang=en', base).href, { waitUntil: 'networkidle' });
   await page.locator('.gcds-history-back a').waitFor();
   assert.equal(await page.locator('.gcds-history-back').count(), 1);
+  assert.equal(await page.locator('nav ul').evaluate(el => getComputedStyle(el).display), 'flex');
+  assert.equal(await page.locator('nav ul').evaluate(el => getComputedStyle(el).listStyleType), 'none');
   assert.equal(await page.locator('.gcds-history-back a').textContent(), '← Back to all services');
   assert.equal(await page.locator('.gcds-history-back a').getAttribute('href'), new URL('?lang=en', base).href);
   await page.screenshot({ path: path.join(screenshots, 'history-desktop-en.png'), fullPage: true });

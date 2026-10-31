@@ -75,11 +75,11 @@ body #sapper select:focus-visible, body #sapper textarea:focus-visible {
   outline: 3px solid var(--gcds-focus-border); outline-offset: 3px; border-radius: 2px;
 }
 body #sapper nav { padding: 0; margin-bottom: 0; border-bottom: .25rem solid var(--gcds-bg-primary); overflow: visible; white-space: normal; font-weight: 400; }
-body #sapper nav .container { min-height: 5rem; gap: 1.5rem; flex-wrap: wrap; }
-body #sapper nav .logo { float: none; padding-block: 1.25rem; margin-right: 0; font-size: 1.25rem; }
+body #sapper nav .container { display: flex; justify-content: space-between; align-items: center; min-height: 5rem; gap: 1.5rem; flex-wrap: wrap; }
+body #sapper nav .logo { display: flex; align-items: center; font-weight: 700; float: none; padding-block: 1.25rem; margin-right: 0; font-size: 1.25rem; }
 body #sapper nav .logo img { height: 2.5rem; border-radius: 0; }
-body #sapper nav ul { flex-wrap: wrap; justify-content: flex-start; gap: 1.5rem; }
-body #sapper nav ul a { padding: 1rem 0; text-decoration: underline; }
+body #sapper nav ul { display: flex; list-style: none; margin: 0; padding: 0; align-items: center; flex-wrap: wrap; justify-content: flex-start; gap: 1.5rem; }
+body #sapper nav ul a { display: block; padding: 1rem 0; text-decoration: underline; }
 body #sapper article { border-radius: 0; padding: 1.5rem; box-shadow: none; }
 body #sapper article + article { margin-top: 1rem; }
 body #sapper article.up, body #sapper article.down, body #sapper article.degraded { border-left-width: .375rem; }
