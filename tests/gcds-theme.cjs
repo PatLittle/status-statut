@@ -107,6 +107,8 @@ const screenshots = process.env.SCREENSHOT_DIR || 'screenshots';
   assert.equal(await page.locator('.gcds-history-back').count(), 1);
   await page.screenshot({ path: path.join(screenshots, 'history-desktop-fr.png'), fullPage: true });
   await page.setViewportSize({ width: 390, height: 844 });
+  await page.waitForFunction(() => document.documentElement.scrollWidth <= innerWidth);
+  await page.waitForTimeout(350); // Allow the upstream canvas chart to finish its resize.
   await page.screenshot({ path: path.join(screenshots, 'history-mobile-fr.png'), fullPage: true });
   await page.locator('.gcds-language-link').click();
   await page.screenshot({ path: path.join(screenshots, 'history-mobile-en.png'), fullPage: true });
