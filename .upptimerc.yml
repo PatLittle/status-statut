@@ -15,10 +15,14 @@ sites:
     url: https://search.open.canada.ca/contracts/record/tbs-sct,Contracts-TBS-Historical-05257
   - name: ATI Search
     url: https://open.canada.ca/en/search/ati
+    type: globalping
   - name: ATI Search details
     url: https://open.canada.ca/en/search/ati/reference/0c9449bde99814b30ee8e467528b2fac
-  - name: CKAN SQL API
-    url: https://open.canada.ca/data/en/api/3/action/datastore_search_sql?sql=SELECT%20%27uptime%27
+    type: globalping
+  - name: Open Maps
+    url: https://open.canada.ca/openmap/en.html#05586948-c5ac-4de9-b9ef-a31020b0dc43
+  - name: CKAN Datastore API
+    url: https://open.canada.ca/data/en/api/3/action/datastore_search?resource_id=grants
   - name: NGINX Static Files
     url: https://open.canada.ca/GCWeb/assets/sig-blk-en.svg
 
