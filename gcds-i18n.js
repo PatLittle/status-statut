@@ -102,6 +102,8 @@
 
   function apply() {
     scheduled = false;
+    // The service-worker fallback can mount/recreate the layout after window.load.
+    if (header && !header.isConnected) document.querySelector('nav')?.before(header);
     document.documentElement.lang = language;
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
       acceptNode: node => node.parentElement?.closest('script, style, noscript, code, pre, textarea, [data-gcds-ui], [translate="no"]')
@@ -124,6 +126,12 @@
     if (toggle.textContent !== toggleText) toggle.textContent = toggleText;
     toggle.setAttribute('aria-label', alternate === 'fr' ? 'Passer au français' : 'Switch to English');
     const skip = header.querySelector('.gcds-skip-link');
+    const currentMain = document.querySelector('main');
+    if (currentMain) {
+      if (!currentMain.id) currentMain.id = 'gcds-main';
+      currentMain.tabIndex = -1;
+      skip.href = `#${currentMain.id}`;
+    }
     const skipText = language === 'fr' ? 'Passer au contenu principal' : 'Skip to main content';
     if (skip.textContent !== skipText) skip.textContent = skipText;
     document.querySelectorAll('a[href]').forEach(link => {
@@ -150,7 +158,16 @@
       let saved;
       try { saved = localStorage.getItem(storageKey); } catch (_) { /* Private storage may be unavailable. */ }
       language = [requested, saved, dictionary.defaultLanguage, 'en'].find(value => value === 'en' || value === 'fr');
-      const nav = document.querySelector('nav');
+      const nav = await new Promise(resolve => {
+        const existing = document.querySelector('nav');
+        if (existing) return resolve(existing);
+        const observer = new MutationObserver(() => {
+          const mounted = document.querySelector('nav');
+          if (mounted) { observer.disconnect(); clearTimeout(timeout); resolve(mounted); }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+        const timeout = setTimeout(() => { observer.disconnect(); resolve(null); }, 15000);
+      });
       if (!nav) return;
       header = document.createElement('header');
       header.className = 'gcds-language-header';
