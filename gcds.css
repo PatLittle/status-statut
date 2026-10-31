@@ -84,7 +84,7 @@ body #sapper article { border-radius: 0; padding: 1.5rem; box-shadow: none; }
 body #sapper article + article { margin-top: 1rem; }
 body #sapper article.up, body #sapper article.down, body #sapper article.degraded { border-left-width: .375rem; }
 /* Draw the operational marker without depending on an installed emoji font. */
-body #sapper main > article.up::before {
+html[data-gcds-language] body #sapper main > article.up::before {
   content: ''; display: inline-block; width: .7rem; height: .35rem;
   border-left: 3px solid var(--gcds-theme-success); border-bottom: 3px solid var(--gcds-theme-success);
   transform: rotate(-45deg); margin-right: .8rem; vertical-align: .15rem;
