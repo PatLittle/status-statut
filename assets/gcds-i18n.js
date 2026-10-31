@@ -4,6 +4,10 @@
  */
 (() => {
   'use strict';
+  // Exported pages can execute custom scripts both during parsing and hydration.
+  const instanceKey = '__gcdsUpptimeLanguageInitialized';
+  if (window[instanceKey]) return;
+  window[instanceKey] = true;
   const script = document.currentScript;
   const assetURL = new URL(script.src, location.href);
   const basePath = assetURL.pathname.slice(0, assetURL.pathname.lastIndexOf('/') + 1);

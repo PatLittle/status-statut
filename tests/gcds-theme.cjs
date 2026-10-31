@@ -15,6 +15,8 @@ const screenshots = process.env.SCREENSHOT_DIR || 'screenshots';
   const url = new URL(base); url.searchParams.set('lang', 'en'); url.searchParams.set('test', 'preserved');
   await page.goto(url.href, { waitUntil: 'networkidle' });
   await page.locator('.gcds-language-link').waitFor();
+  await page.addScriptTag({ url: new URL('gcds-i18n.js', base).href });
+  assert.equal(await page.locator('.gcds-language-link').count(), 1, 'A repeated script load creates one language control');
   await page.waitForFunction(() => document.querySelectorAll('.live-status article').length > 0);
   assert.equal(await page.locator('html').getAttribute('lang'), 'en');
   assert.equal(await page.locator('.gcds-language-link').textContent(), 'Français');
