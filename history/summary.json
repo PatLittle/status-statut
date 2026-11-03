@@ -14,7 +14,7 @@
     "timeDay": 344,
     "timeWeek": 864,
     "timeMonth": 611,
-    "timeYear": 392,
+    "timeYear": 391,
     "dailyMinutesDown": {}
   },
   {
@@ -32,7 +32,7 @@
     "timeDay": 674,
     "timeWeek": 776,
     "timeMonth": 1715,
-    "timeYear": 767,
+    "timeYear": 768,
     "dailyMinutesDown": {}
   },
   {
@@ -40,18 +40,20 @@
     "url": "https://search.open.canada.ca/opendata",
     "icon": "https://icons.duckduckgo.com/ip3/search.open.canada.ca.ico",
     "slug": "open-data-search",
-    "status": "up",
+    "status": "down",
     "uptime": "100.00%",
-    "uptimeDay": "100.00%",
+    "uptimeDay": "99.98%",
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
-    "time": 5965,
-    "timeDay": 454,
-    "timeWeek": 548,
-    "timeMonth": 671,
-    "timeYear": 5967,
-    "dailyMinutesDown": {}
+    "time": 5956,
+    "timeDay": 496,
+    "timeWeek": 547,
+    "timeMonth": 668,
+    "timeYear": 5933,
+    "dailyMinutesDown": {
+      "2026-11-03": 0
+    }
   },
   {
     "name": "Contracts Search",
@@ -68,7 +70,7 @@
     "timeDay": 267,
     "timeWeek": 422,
     "timeMonth": 474,
-    "timeYear": 2521,
+    "timeYear": 2526,
     "dailyMinutesDown": {
       "2026-10-31": 141
     }
@@ -88,7 +90,7 @@
     "timeDay": 225,
     "timeWeek": 2249,
     "timeMonth": 1128,
-    "timeYear": 2284,
+    "timeYear": 2289,
     "dailyMinutesDown": {}
   },
   {
@@ -151,11 +153,11 @@
     "icon": "https://icons.duckduckgo.com/ip3/open.canada.ca.ico",
     "slug": "ckan-datastore-api",
     "status": "up",
-    "uptime": "95.66%",
+    "uptime": "96.92%",
     "uptimeDay": "100.00%",
-    "uptimeWeek": "95.66%",
-    "uptimeMonth": "95.66%",
-    "uptimeYear": "95.66%",
+    "uptimeWeek": "96.92%",
+    "uptimeMonth": "96.92%",
+    "uptimeYear": "96.92%",
     "time": 797,
     "timeDay": 773,
     "timeWeek": 797,
