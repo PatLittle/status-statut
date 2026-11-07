@@ -12,8 +12,8 @@
     "uptimeYear": "100.00%",
     "time": 374,
     "timeDay": 633,
-    "timeWeek": 849,
-    "timeMonth": 615,
+    "timeWeek": 900,
+    "timeMonth": 614,
     "timeYear": 393,
     "dailyMinutesDown": {}
   },
@@ -30,9 +30,9 @@
     "uptimeYear": "100.00%",
     "time": 689,
     "timeDay": 771,
-    "timeWeek": 769,
-    "timeMonth": 1718,
-    "timeYear": 771,
+    "timeWeek": 766,
+    "timeMonth": 1734,
+    "timeYear": 772,
     "dailyMinutesDown": {}
   },
   {
@@ -48,9 +48,9 @@
     "uptimeYear": "99.97%",
     "time": 5868,
     "timeDay": 717,
-    "timeWeek": 504,
-    "timeMonth": 663,
-    "timeYear": 5895,
+    "timeWeek": 488,
+    "timeMonth": 657,
+    "timeYear": 5903,
     "dailyMinutesDown": {
       "2026-11-03": 161
     }
@@ -68,9 +68,9 @@
     "uptimeYear": "99.97%",
     "time": 2548,
     "timeDay": 460,
-    "timeWeek": 397,
-    "timeMonth": 475,
-    "timeYear": 2499,
+    "timeWeek": 390,
+    "timeMonth": 469,
+    "timeYear": 2505,
     "dailyMinutesDown": {
       "2026-10-31": 141
     }
@@ -88,9 +88,9 @@
     "uptimeYear": "100.00%",
     "time": 2063,
     "timeDay": 510,
-    "timeWeek": 1792,
-    "timeMonth": 1126,
-    "timeYear": 2212,
+    "timeWeek": 266,
+    "timeMonth": 1142,
+    "timeYear": 2217,
     "dailyMinutesDown": {}
   },
   {
@@ -118,20 +118,21 @@
     "url": "https://open.canada.ca/en/search/ati/reference/0c9449bde99814b30ee8e467528b2fac",
     "icon": "https://icons.duckduckgo.com/ip3/open.canada.ca.ico",
     "slug": "ati-search-details",
-    "status": "down",
-    "uptime": "99.99%",
-    "uptimeDay": "99.97%",
-    "uptimeWeek": "99.23%",
-    "uptimeMonth": "99.82%",
-    "uptimeYear": "99.99%",
-    "time": 1539,
-    "timeDay": 936,
-    "timeWeek": 898,
-    "timeMonth": 898,
-    "timeYear": 1539,
+    "status": "up",
+    "uptime": "99.98%",
+    "uptimeDay": "84.38%",
+    "uptimeWeek": "97.00%",
+    "uptimeMonth": "99.31%",
+    "uptimeYear": "99.94%",
+    "time": 1511,
+    "timeDay": 970,
+    "timeWeek": 905,
+    "timeMonth": 905,
+    "timeYear": 1511,
     "dailyMinutesDown": {
       "2026-11-04": 77,
-      "2026-11-06": 0
+      "2026-11-07": 128,
+      "2026-11-06": 96
     }
   },
   {
@@ -158,11 +159,11 @@
     "icon": "https://icons.duckduckgo.com/ip3/open.canada.ca.ico",
     "slug": "ckan-datastore-api",
     "status": "up",
-    "uptime": "98.67%",
+    "uptime": "98.70%",
     "uptimeDay": "100.00%",
-    "uptimeWeek": "98.67%",
-    "uptimeMonth": "98.67%",
-    "uptimeYear": "98.67%",
+    "uptimeWeek": "98.70%",
+    "uptimeMonth": "98.70%",
+    "uptimeYear": "98.70%",
     "time": 3268,
     "timeDay": 39378,
     "timeWeek": 3268,
@@ -185,8 +186,8 @@
     "uptimeYear": "100.00%",
     "time": 93,
     "timeDay": 192,
-    "timeWeek": 144,
-    "timeMonth": 169,
+    "timeWeek": 137,
+    "timeMonth": 167,
     "timeYear": 108,
     "dailyMinutesDown": {}
   }
