@@ -14,7 +14,7 @@
     "timeDay": 316,
     "timeWeek": 283,
     "timeMonth": 576,
-    "timeYear": 392,
+    "timeYear": 393,
     "dailyMinutesDown": {
       "2026-11-08": 536,
       "2026-11-07": 518
@@ -35,7 +35,7 @@
     "timeDay": 575,
     "timeWeek": 735,
     "timeMonth": 1700,
-    "timeYear": 777,
+    "timeYear": 778,
     "dailyMinutesDown": {
       "2026-11-08": 536,
       "2026-11-07": 263
@@ -56,7 +56,7 @@
     "timeDay": 440,
     "timeWeek": 387,
     "timeMonth": 589,
-    "timeYear": 5805,
+    "timeYear": 5825,
     "dailyMinutesDown": {
       "2026-11-03": 161,
       "2026-11-08": 536,
@@ -78,7 +78,7 @@
     "timeDay": 250,
     "timeWeek": 343,
     "timeMonth": 432,
-    "timeYear": 2456,
+    "timeYear": 2472,
     "dailyMinutesDown": {
       "2026-10-31": 141,
       "2026-11-08": 536,
@@ -100,7 +100,7 @@
     "timeDay": 223,
     "timeWeek": 220,
     "timeMonth": 1097,
-    "timeYear": 2126,
+    "timeYear": 2141,
     "dailyMinutesDown": {
       "2026-11-08": 536,
       "2026-11-07": 248
@@ -111,14 +111,14 @@
     "url": "https://open.canada.ca/en/search/ati",
     "icon": "https://icons.duckduckgo.com/ip3/open.canada.ca.ico",
     "slug": "ati-search",
-    "status": "up",
+    "status": "down",
     "uptime": "99.91%",
-    "uptimeDay": "78.64%",
-    "uptimeWeek": "89.18%",
+    "uptimeDay": "99.91%",
+    "uptimeWeek": "89.17%",
     "uptimeMonth": "97.33%",
     "uptimeYear": "99.78%",
     "time": 327,
-    "timeDay": 726,
+    "timeDay": 276,
     "timeWeek": 382,
     "timeMonth": 344,
     "timeYear": 327,
@@ -126,7 +126,8 @@
       "2026-11-04": 78,
       "2026-11-08": 536,
       "2026-11-07": 247,
-      "2026-11-12": 308
+      "2026-11-12": 308,
+      "2026-11-13": 1
     }
   },
   {
@@ -134,10 +135,10 @@
     "url": "https://open.canada.ca/en/search/ati/reference/0c9449bde99814b30ee8e467528b2fac",
     "icon": "https://icons.duckduckgo.com/ip3/open.canada.ca.ico",
     "slug": "ati-search-details",
-    "status": "up",
+    "status": "down",
     "uptime": "99.89%",
-    "uptimeDay": "100.00%",
-    "uptimeWeek": "86.39%",
+    "uptimeDay": "99.97%",
+    "uptimeWeek": "87.21%",
     "uptimeMonth": "96.69%",
     "uptimeYear": "99.72%",
     "time": 1412,
@@ -149,7 +150,8 @@
       "2026-11-04": 77,
       "2026-11-07": 739,
       "2026-11-06": 96,
-      "2026-11-08": 536
+      "2026-11-08": 536,
+      "2026-11-13": 0
     }
   },
   {
@@ -158,11 +160,11 @@
     "icon": "https://icons.duckduckgo.com/ip3/open.canada.ca.ico",
     "slug": "open-maps",
     "status": "up",
-    "uptime": "95.88%",
+    "uptime": "96.11%",
     "uptimeDay": "100.00%",
     "uptimeWeek": "92.29%",
-    "uptimeMonth": "95.88%",
-    "uptimeYear": "95.88%",
+    "uptimeMonth": "96.11%",
+    "uptimeYear": "96.11%",
     "time": 131,
     "timeDay": 90,
     "timeWeek": 100,
@@ -179,11 +181,11 @@
     "icon": "https://icons.duckduckgo.com/ip3/open.canada.ca.ico",
     "slug": "ckan-datastore-api",
     "status": "up",
-    "uptime": "95.22%",
+    "uptime": "95.48%",
     "uptimeDay": "100.00%",
     "uptimeWeek": "92.33%",
-    "uptimeMonth": "95.22%",
-    "uptimeYear": "95.22%",
+    "uptimeMonth": "95.48%",
+    "uptimeYear": "95.48%",
     "time": 3051,
     "timeDay": 520,
     "timeWeek": 2554,
